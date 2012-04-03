@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  post_id: 1
+  author: MyString
+  author_email: MyString
+  author_url: MyString
+  date: 2012-04-03 15:56:18
+  content: MyText
+  approved: false
+
+two:
+  post_id: 1
+  author: MyString
+  author_email: MyString
+  author_url: MyString
+  date: 2012-04-03 15:56:18
+  content: MyText
+  approved: false
