@@ -16,7 +16,7 @@
   <tr>
     <td><%= post.user_id %></td>
     <td><%= post.date %></td>
-    <td><%= post.content %></td>
+    <td><%= truncate(post.content, :length => 100) %></td>
     <td><%= post.title %></td>
     <td><%= post.status %></td>
     <td><%= link_to 'Show', admin_post_path(post) %></td>

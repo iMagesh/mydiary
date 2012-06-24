@@ -1,0 +1,38 @@
+<br/>
+<% if !@posts.empty? %>
+<% @posts.each do |post| %>
+						
+<div class="post">
+  <div class="content">
+    
+    <h3><a href="/page/<%= post.id%>"><%= post.title %></a>
+      <br /><span style="font-size:12px;color:#666;padding:3px 0;">about magesh on <%= post.created_at.to_date %></span>
+      <% if current_user && !current_user.nil? %>
+      <span class="edit"><a href="/admin/posts/<%= post.id %>/edit">Edit</a></span>
+      <% end %>
+    </h3>
+    <%= truncate(post.content, :length => 360, :omission => ' .. (continued)') %>
+    <p><span style="font-size:10px;color:#666;padding:3px 0;"><?php the_tags(); ?></span></p>
+    <br />
+  </div>
+</div><!-- end post -->
+
+<?php comments_template(); ?>
+<% end %>
+
+<% else %>
+    
+<h2 class="page_header">Uh oh.</h2>
+<div class="entry">
+  <p>Sorry, no posts matched your criteria. Want to search instead?</p>
+  <?php include (TEMPLATEPATH . '/searchform.php'); ?>
+</div>
+
+<% end %>
+
+<div class="posttopline">
+  <span class="previous"><?php previous_post_link('&larr; %link') ?></span>
+  <span class="next"><?php next_post_link('%link &rarr;') ?></span>
+</div>
+    
+<br/>
