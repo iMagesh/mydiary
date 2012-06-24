@@ -1,0 +1,21 @@
+development: &non_production_settings
+    :username: "magesh"
+    :password: "magesh"
+    :sitename: "Magesh's Diary"
+    :site_description: "This is my diary where i share everything and anything :)"
+
+
+test:
+  <<: *non_production_settings
+
+production:
+    :username: "magesh"
+    :password: "magesh"
+    :sitename: "Magesh's Diary"
+    :site_description: "This is my diary where i share everything and anything :)"
+
+staging:
+    :username: "magesh"
+    :password: "magesh"
+    :sitename: "Magesh's Diary"
+    :site_description: "This is my diary where i share everything and anything :)"
