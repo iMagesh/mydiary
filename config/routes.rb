@@ -10,8 +10,11 @@ Mydiary::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "page#index"
   resources :sessions
-  resources :page
-  
+  resources :page, :except => 'show'
+
+  match '/diary' => "page#diary"
+  match '/:permalink' => "page#show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

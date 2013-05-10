@@ -6,6 +6,13 @@ class CreatePosts < ActiveRecord::Migration
       t.text :content
       t.string :title
       t.string :status
+      t.string :excerpt
+      t.string :comment_status
+      t.string :ping_status
+      t.string :post_password
+      t.string :permalink
+      t.string :post_type
+      t.integer :comment_count
 
       t.timestamps
     end

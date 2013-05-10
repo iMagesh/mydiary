@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403071258) do
+ActiveRecord::Schema.define(:version => 20120624081810) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "author"
+    t.string   "author_email"
+    t.string   "author_url"
+    t.datetime "date"
+    t.text     "content"
+    t.boolean  "approved"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
@@ -19,8 +31,27 @@ ActiveRecord::Schema.define(:version => 20120403071258) do
     t.text     "content"
     t.string   "title"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "excerpt"
+    t.string   "comment_status"
+    t.string   "ping_status"
+    t.string   "post_password"
+    t.string   "permalink"
+    t.string   "post_type"
+    t.integer  "comment_count"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+    t.date     "dob"
+    t.string   "gender"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

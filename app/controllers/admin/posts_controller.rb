@@ -3,11 +3,11 @@ class Admin::PostsController < ApplicationController
   http_basic_authenticate_with :name => APP_CONFIG[:username], :password => APP_CONFIG[:password]
   before_filter :authorize
   before_filter :find_users, :only => [:new, :edit]
-  
+
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.paginate(:per_page => 10, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,5 +89,5 @@ class Admin::PostsController < ApplicationController
   def find_users
     @users = User.all
   end
-  
+
 end

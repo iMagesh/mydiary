@@ -4,7 +4,6 @@
   <tr>
     <th>User</th>
     <th>Date</th>
-    <th>Content</th>
     <th>Title</th>
     <th>Status</th>
     <th></th>
@@ -16,7 +15,6 @@
   <tr>
     <td><%= post.user_id %></td>
     <td><%= post.date %></td>
-    <td><%= truncate(post.content, :length => 100) %></td>
     <td><%= post.title %></td>
     <td><%= post.status %></td>
     <td><%= link_to 'Show', admin_post_path(post) %></td>
@@ -25,6 +23,7 @@
   </tr>
 <% end %>
 </table>
+<%= will_paginate @posts %>
 
 <br />
 

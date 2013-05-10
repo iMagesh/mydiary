@@ -28,7 +28,7 @@
           <img src="/assets/logo.jpg"></img>
           <div>
             <div class="imenu">
-              <b><a href="/">Home</a> | <a href="/about-me">About Me</a> | <a href="/projects">Projects</a> | <a href="/category/regular">My Diary</a> | <a href="/category/video">Video</a> | Contact Me</b>
+              <b><a href="/">Home</a> | <a href="/about-me">About Me</a> | <a href="/projects">Projects</a> | <a href="/videos">Video</a> | Contact Me</b>
             </div>
             <div class="status">
               <span><a href="#" title="View Recent" ><strong> Status </strong><small class="fey"> &#187;</small></a></span> <?php if (function_exists('get_twitter_msg')){ get_twitter_msg(); } ?><?php if (function_exists('statuspress')) { echo statuspress('yourfacebookfeedhere', '', 1); } ?></div>
@@ -39,7 +39,7 @@
               <p> <input type="text" id="q" value="" name="s" size="15" /></p>
 	    </form>
           </div>
-          
+
           <%= yield %>
 
           <div class="lastfm">
@@ -64,12 +64,12 @@
 
 
           <div class="footer">
-	    
+
 	    <div>
     	      <p><strong>About Me</strong></p>
               <p>Im Magesh, Chennai based Web-Developer, Linux user, Social Media Enthusiast and..<a href="<?php bloginfo('url'); ?>/about-me/" title="Bored of me yet?"><b>More &#187;</b></a></p>
 	    </div>
-	    
+
 	    <div style="background:#FFF;padding:0px;color:#fff;border:none">
 
               <br/>
@@ -84,24 +84,24 @@
               The Sapling Project
             </div>
 	    <div class="last">
-	      
+
               <br/>
               <br/>
               <!-- <a href="<?php bloginfo('rss2_url'); ?>" title="RSS - Subscribe..you know you want to" style="background:#FFF;padding:0px;color:#fff;border:none" ><img src="/wp-content/themes/tj-clean/images/feed.gif" alt="RSS Subscribe..you know you want to" /></a> -->
-	      
-	      
+
+
 	    </div>
 	  </div><!-- end footer -->
 
           <br />
           <br />
           <br />
-          
+
 	  <div class="copyright">
-            
-            <p>&copy; <%= APP_CONFIG[:sitename] %>. Powered by <a href="/about-me" title="Magesh">Magesh</a> <!-- <br />Valid <a href="http://validator.w3.org/check?uri=referer" title="Believe it or not, but my code is correct!" >XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Some CSS love" >CSS</a> | <a href="http://validator.w3.org/feed/check.cgi?url=<?php bloginfo('rss2_url'); ?>" title="That feed you should be reading is all good" >RSS</a> - <a href="<?php bloginfo('url'); ?>/sitemap/" title="Site Map">Site Map</a> - --></p> 
-          
-	  </div>       
+
+            <p>&copy; <%= APP_CONFIG[:sitename] %>. Powered by <a href="/about-me" title="Magesh">Magesh</a> <!-- <br />Valid <a href="http://validator.w3.org/check?uri=referer" title="Believe it or not, but my code is correct!" >XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Some CSS love" >CSS</a> | <a href="http://validator.w3.org/feed/check.cgi?url=<?php bloginfo('rss2_url'); ?>" title="That feed you should be reading is all good" >RSS</a> - <a href="<?php bloginfo('url'); ?>/sitemap/" title="Site Map">Site Map</a> - --></p>
+
+	  </div>
         </div>
     </div> </div> <!-- end container -->
   </body>
