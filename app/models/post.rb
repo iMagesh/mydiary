@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   validates :title, :presence => true
   validates :content, :presence => true
 
-  before_save :encrypt, :if => self.post_type == "diary"
+  before_save :encrypt#, :if => self.post_type == "diary"
 
   def encrypt
 
