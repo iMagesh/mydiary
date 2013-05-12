@@ -14,9 +14,8 @@
     <% if post.excerpt && !post.excerpt.blank? && !post.excerpt.nil? %>
     <%= markdown_html(post.excerpt).html_safe %>
     <% else %>
-    <% excerpt = markdown_html(post.content).html_safe %>
-    <% final = truncate(excerpt, :length => 360, :omission => '.. (continued)') %>
-    <%= Hpricot(final).to_s.html_safe %>
+    <%# final = sanitize(truncate(post.content, :length => 360, :omission => '.. (continued)')) %>
+    <%#= final = markdown_html(post.content).html_safe %>
 
     <% end %>
     <p><span style="font-size:10px;color:#666;padding:3px 0;"><?php the_tags(); ?></span></p>

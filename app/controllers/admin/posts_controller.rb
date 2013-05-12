@@ -64,7 +64,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.update_attributes!(post_params)
         format.html { redirect_to [:admin, @post], notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -88,6 +88,16 @@ class Admin::PostsController < ApplicationController
 
   def find_users
     @users = User.all
+  end
+
+
+  private
+  # Using a private method to encapsulate the permissible parameters is just a good pattern
+  # since you'll be able to reuse the same permit list between create and update. Also, you
+  # can specialize this method with per-user checking of permissible attributes.
+
+  def post_params
+    params.require(:post).permit!
   end
 
 end
