@@ -31,6 +31,42 @@ class PageController < ApplicationController
     end
   end
 
+  def photos
+    @posts = Post.where(:status => "publish", :post_type => "photo").order("date DESC")
+
+    respond_to do |format|
+      format.html {render 'diary'}
+      format.json { render json: @posts }
+    end
+  end
+
+  def videos
+    @posts = Post.where(:status => "publish", :post_type => "video").order("date DESC")
+
+    respond_to do |format|
+      format.html {render 'diary'}
+      format.json { render json: @posts }
+    end
+  end
+
+  def quotes
+    @posts = Post.where(:status => "publish", :post_type => "quote").order("date DESC")
+
+    respond_to do |format|
+      format.html {render 'diary'}
+      format.json { render json: @posts }
+    end
+  end
+
+  def links
+    @posts = Post.where(:status => "publish", :post_type => "link").order("date DESC")
+
+    respond_to do |format|
+      format.html {render 'diary'}
+      format.json { render json: @posts }
+    end
+  end
+
   private
   # Using a private method to encapsulate the permissible parameters is just a good pattern
   # since you'll be able to reuse the same permit list between create and update. Also, you

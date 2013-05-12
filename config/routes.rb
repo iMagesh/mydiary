@@ -13,6 +13,11 @@ Mydiary::Application.routes.draw do
   resources :page, :except => 'show'
 
   match '/diary', to: "page#diary", via: :all
+  match '/photos', to: "page#photos", via: :all
+  match '/videos', to: "page#videos", via: :all
+  match '/quotes', to: "page#quotes", via: :all
+  match '/links', to: "page#links", via: :all
+
   match '/:permalink', to: "page#show", via: :all
 
   # The priority is based upon order of creation:
