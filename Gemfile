@@ -54,3 +54,6 @@ gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 gem 'rails-observers'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
+
+gem 'acts-as-taggable-on'
+

@@ -3,8 +3,11 @@ class PageController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:status => "publish", :post_type => "post").order("date DESC")
-
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag]).where(:status => "publish").order("date DESC")
+    else
+      @posts = Post.where(:status => "publish", :post_type => "post").order("date DESC")
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -73,7 +76,7 @@ class PageController < ApplicationController
   # can specialize this method with per-user checking of permissible attributes.
 
   def page_params
-    params.required(:post).permit(:date, :title, :permalink, :content, :status, :post_type)
+    params.required(:post).permit(:date, :title, :permalink, :content, :status, :post_type, :tag_list)
   end
 
 

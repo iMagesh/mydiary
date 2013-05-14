@@ -56,7 +56,12 @@
                     ?> -->
             <h3>Tag Cloud</h3>
             <div>
-              magesh, raghu, yogesh
+              <div id="tag_cloud">
+                <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
+                <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+                <% end %>
+              </div>
+              <%#= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
             </div>
             <br />
           </div>

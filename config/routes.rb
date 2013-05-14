@@ -19,6 +19,7 @@ Mydiary::Application.routes.draw do
   match '/links', to: "page#links", via: :all
 
   match '/:permalink', to: "page#show", via: :all
+  get 'tags/:tag', to: 'page#index', as: :tag
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

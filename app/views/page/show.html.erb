@@ -11,7 +11,7 @@
     <span class="edit"><a href="/admin/posts/<%= @post.id %>/edit">Edit</a></span>
     <% end %>
     <%= markdown_html(@post.content).html_safe %>
-    <p><span style="font-size:10px;color:#666;padding:3px 0;">magesh, raghu, yogesh</span></p>
+    <p><span style="font-size:10px;color:#666;padding:3px 0;">Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></span></p>
     <br />
   </div>
 </div><!-- end post -->

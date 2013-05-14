@@ -9,11 +9,11 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624081810) do
+ActiveRecord::Schema.define(version: 20130512181643) do
 
-  create_table "comments", :force => true do |t|
+  create_table "comments", force: true do |t|
     t.integer  "post_id"
     t.string   "author"
     t.string   "author_email"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(:version => 20120624081810) do
     t.datetime "date"
     t.text     "content"
     t.boolean  "approved"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "posts", :force => true do |t|
+  create_table "posts", force: true do |t|
     t.integer  "user_id"
     t.datetime "date"
     t.text     "content"
@@ -38,11 +38,28 @@ ActiveRecord::Schema.define(:version => 20120624081810) do
     t.string   "permalink"
     t.string   "post_type"
     t.integer  "comment_count"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  create_table "users", :force => true do |t|
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "users", force: true do |t|
     t.string   "email"
     t.string   "password_digest"
     t.string   "first_name"
@@ -50,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20120624081810) do
     t.string   "username"
     t.date     "dob"
     t.string   "gender"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
