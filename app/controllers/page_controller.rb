@@ -1,12 +1,14 @@
 class PageController < ApplicationController
 
+  http_basic_authenticate_with :name => APP_CONFIG[:username], :password => APP_CONFIG[:password], :only => [:diary]
+
   # GET /posts
   # GET /posts.json
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).where(:status => "publish").order("date DESC")
+      @posts = Post.tagged_with(params[:tag]).where(:status => "publish").order("date DESC").paginate(:page => params[:page], :per_page => 20)
     else
-      @posts = Post.where(:status => "publish", :post_type => "post").order("date DESC")
+      @posts = Post.where(:status => "publish", :post_type => "post").order("date DESC").paginate(:page => params[:page], :per_page => 10)
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +28,7 @@ class PageController < ApplicationController
   end
 
   def diary
+    redirect_to root_path and return if current_user.nil? || current_user.email != "pingmagesh@gmail.com"
     @posts = Post.where(:status => "publish", :post_type => "diary").order("date DESC")
 
     respond_to do |format|
@@ -70,6 +73,16 @@ class PageController < ApplicationController
     end
   end
 
+  def save_comment
+    if !params[:comment].nil? && !params[:comment][:author].blank? && !params[:comment][:author_email].blank? && !params[:comment][:author_url].blank? && !params[:comment][:content].blank?
+      c = Comment.new(comment_params)
+      c.save
+      redirect_to :back, :comment => "true"
+    else
+      redirect_to :back, :comment => "false"
+    end
+  end
+
   private
   # Using a private method to encapsulate the permissible parameters is just a good pattern
   # since you'll be able to reuse the same permit list between create and update. Also, you
@@ -77,6 +90,10 @@ class PageController < ApplicationController
 
   def page_params
     params.required(:post).permit(:date, :title, :permalink, :content, :status, :post_type, :tag_list)
+  end
+
+  def comment_params
+    params.required(:comment).permit(:author, :author_email, :author_url, :content, :post_id)
   end
 
 

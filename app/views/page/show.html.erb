@@ -20,14 +20,14 @@
 
 <div id="comments" class="post">
   <h3 class="comments_headers">
-    <%= (@post.comments.size == 0) ? "No comments - not surprising really, but why not break the trend..." : (@post.comments.size == 1) ? "1 comment - is that all?" : @post.comments.size + "comments - really? way cool!" %></h3>
+    <%= (@post.comments.size == 0) ? "No comments - not surprising really, but why not break the trend..." : (@post.comments.size == 1) ? "1 comment - is that all?" : @post.comments.size.to_s + " comments - really? way cool!" %></h3>
 
 </div>
 <% @post.comments.each do |comment| %>
 <div class="post">
   <div class="content">
     <%= comment.content %>
-    <p style="font-size:12px;color:#666;padding:3px 0;">Lovingly written by <%= comment.user.first_name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
+    <p style="font-size:12px;color:#666;padding:3px 0;">Lovingly written by <a href="<%= comment.author_url%>"><%= comment.author %></a> <%= time_ago_in_words(comment.created_at) %> ago</p>
   </div>
 
 </div>
@@ -47,26 +47,26 @@
   <div class="content">
 
     <h3 id="respond" class="comments_headers">Leave some comment love</h3>
-    <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="comment_form">
+    <%= form_tag("/page/save_comment", :method => "post", :id => "comment_form") do %>
 
 		  <% if current_user && !current_user.nil? %>
 
 		  <p class="unstyled">Logged in as <a href=""><%= current_user.first_name %></a>. <a href="" title="">Logout &raquo;</a></p>
                   <% end %>
-		  <p><input class="text_input" type="text" name="author" id="author" value="<%= (current_user.nil?) ? "" : current_user.first_name %>" tabindex="1" />
+		  <p><input class="text_input" type="text" name="comment[author]" id="author" value="<%= (current_user.nil?) ? "" : current_user.first_name %>" tabindex="1" />
                     <label for="author"><strong> Name</strong></label></p>
-		  <p><input class="text_input" type="text" name="email" id="email" value="<%= (current_user.nil?) ? "" : current_user.email %>" tabindex="2" /><label for="email"><strong> Email</strong></label></p>
-		  <p><input class="text_input" type="text" name="url" id="url" value="" tabindex="3" /><label for="url"><strong> Website</strong></label></p>
+		  <p><input class="text_input" type="text" name="comment[author_email]" id="email" value="<%= (current_user.nil?) ? "" : current_user.email %>" tabindex="2" /><label for="email"><strong> Email</strong></label></p>
+		  <p><input class="text_input" type="text" name="comment[author_url]" id="url" value="" tabindex="3" /><label for="url"><strong> Website</strong></label></p>
 		  <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
 
-		  <p><textarea class="text_input text_area" name="comment" id="comment" cols="7" rows="7" tabindex="4"></textarea></p>
+		  <p><textarea class="text_input text_area" name="comment[content]" id="comment" cols="7" rows="7" tabindex="4"></textarea></p>
 
 		   <p>
-		    <input name="submit" class="form_submit" type="submit" id="submit" src="<?php bloginfo('template_url') ?>/images/submit_comment.gif" tabindex="5" value="Submit" />
-		    <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
+                     <input type="hidden" name="comment[post_id]" value="<%= @post.id %>" />
+		    <input name="submit" class="form_submit" type="submit" id="submit" src="/assets/submit_comment.gif" tabindex="5" value="Submit" />
 		   </p>
 
-    </form>
+    <% end %>
 
   </div>
 

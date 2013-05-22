@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512181643) do
+ActiveRecord::Schema.define(version: 20130518190224) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20130512181643) do
     t.string   "gender"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.text     "pvt_key"
+    t.text     "pub_key"
   end
 
 end

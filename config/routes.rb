@@ -10,7 +10,9 @@ Mydiary::Application.routes.draw do
   get "sign_up", to: "users#new", :as => "sign_up"
   root :to => "page#index"
   resources :sessions
-  resources :page, :except => 'show'
+  resources :page, :except => 'show' do
+    post 'save_comment', :on => :collection
+  end
 
   match '/diary', to: "page#diary", via: :all
   match '/photos', to: "page#photos", via: :all

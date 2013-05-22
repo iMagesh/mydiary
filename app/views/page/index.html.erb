@@ -18,7 +18,7 @@
     <%#= final = markdown_html(post.content).html_safe %>
 
     <% end %>
-    <p><span style="font-size:10px;color:#666;padding:3px 0;"><?php the_tags(); ?></span></p>
+    <p>Tags: <span style="font-size:10px;color:#666;padding:3px 0;"><%= post.tag_list.join(',')%></span></p>
     <br />
   </div>
 </div><!-- end post -->
@@ -38,7 +38,7 @@
 
 <div class="posttopline">
   <span class="previous"><?php previous_post_link('&larr; %link') ?></span>
-  <span class="next"><?php next_post_link('%link &rarr;') ?></span>
+  <span class="next"><%= will_paginate @posts %></span>
 </div>
 
 <br/>
